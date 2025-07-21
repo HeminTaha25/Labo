@@ -1,0 +1,237 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us - {{ lab_info.name }}{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1 class="hero-title">Contact Us</h1>
+                <p class="hero-subtitle">We're here to help with all your laboratory needs</p>
+                <p class="lead">Get in touch with our team for questions, appointments, or more information about our services.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Information -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100 text-center">
+                    <div class="card-body p-4">
+                        <div class="bg-primary rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                            <i class="fas fa-phone text-white fa-2x"></i>
+                        </div>
+                        <h5>Phone</h5>
+                        <p class="mb-2">{{ lab_info.phone }}</p>
+                        <small class="text-muted">Available during business hours</small>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100 text-center">
+                    <div class="card-body p-4">
+                        <div class="bg-primary rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                            <i class="fas fa-envelope text-white fa-2x"></i>
+                        </div>
+                        <h5>Email</h5>
+                        <p class="mb-2">{{ lab_info.email }}</p>
+                        <small class="text-muted">We respond within 24 hours</small>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100 text-center">
+                    <div class="card-body p-4">
+                        <div class="bg-primary rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                            <i class="fas fa-map-marker-alt text-white fa-2x"></i>
+                        </div>
+                        <h5>Location</h5>
+                        <p class="mb-2">{{ lab_info.address }}</p>
+                        <small class="text-muted">Easy parking available</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Operating Hours -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Operating Hours</h2>
+            <p class="section-subtitle">We're open extended hours for your convenience</p>
+        </div>
+        
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body p-4">
+                        <div class="row text-center">
+                            <div class="col-md-4 mb-3">
+                                <h6 class="text-primary">Monday - Friday</h6>
+                                <p class="mb-0">{{ lab_info.hours.weekdays }}</p>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <h6 class="text-primary">Saturday</h6>
+                                <p class="mb-0">{{ lab_info.hours.saturday }}</p>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <h6 class="text-primary">Sunday</h6>
+                                <p class="mb-0">{{ lab_info.hours.sunday }}</p>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center mt-4">
+                            <div class="alert alert-info">
+                                <i class="fas fa-info-circle me-2"></i>
+                                <strong>Emergency Services:</strong> 24/7 STAT testing available for urgent cases
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Form -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="text-center mb-5">
+                    <h2 class="section-title">Send Us a Message</h2>
+                    <p class="section-subtitle">Have a question or need more information? We'd love to hear from you.</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-body p-4">
+                        <form method="POST" action="{{ url_for('contact') }}">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="name" class="form-label">Full Name *</label>
+                                    <input type="text" class="form-control" id="name" name="name" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="email" class="form-label">Email Address *</label>
+                                    <input type="email" class="form-control" id="email" name="email" required>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="phone" class="form-label">Phone Number</label>
+                                    <input type="tel" class="form-control" id="phone" name="phone">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="subject" class="form-label">Subject *</label>
+                                    <select class="form-control" id="subject" name="subject" required>
+                                        <option value="">Select a subject</option>
+                                        <option value="general">General Inquiry</option>
+                                        <option value="appointment">Appointment Request</option>
+                                        <option value="results">Test Results</option>
+                                        <option value="billing">Billing Question</option>
+                                        <option value="services">Services Information</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Message *</label>
+                                <textarea class="form-control" id="message" name="message" rows="5" required placeholder="Please provide details about your inquiry..."></textarea>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="privacy" name="privacy" required>
+                                    <label class="form-check-label" for="privacy">
+                                        I agree to the privacy policy and consent to the processing of my personal data *
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary btn-lg">
+                                    <i class="fas fa-paper-plane me-2"></i>Send Message
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Map Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Find Us</h2>
+            <p class="section-subtitle">Conveniently located in the heart of the medical district</p>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="card">
+                    <div class="card-body p-0">
+                        <!-- Placeholder for map - in a real implementation, you would use Google Maps or similar -->
+                        <div class="bg-light d-flex align-items-center justify-content-center" style="height: 400px;">
+                            <div class="text-center">
+                                <i class="fas fa-map-marked-alt text-primary fa-4x mb-3"></i>
+                                <h5>Interactive Map</h5>
+                                <p class="text-muted">{{ lab_info.address }}</p>
+                                <a href="https://maps.google.com/?q={{ lab_info.address | urlencode }}" target="_blank" class="btn btn-outline-primary">
+                                    <i class="fas fa-external-link-alt me-2"></i>View in Google Maps
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Additional Information -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 mb-4">
+                <h4>Parking & Accessibility</h4>
+                <ul class="list-unstyled">
+                    <li><i class="fas fa-check text-success me-2"></i>Free parking available</li>
+                    <li><i class="fas fa-check text-success me-2"></i>Wheelchair accessible facility</li>
+                    <li><i class="fas fa-check text-success me-2"></i>Ground floor location</li>
+                    <li><i class="fas fa-check text-success me-2"></i>Public transportation nearby</li>
+                </ul>
+            </div>
+            
+            <div class="col-lg-6 mb-4">
+                <h4>What to Bring</h4>
+                <ul class="list-unstyled">
+                    <li><i class="fas fa-check text-success me-2"></i>Valid photo ID</li>
+                    <li><i class="fas fa-check text-success me-2"></i>Insurance card</li>
+                    <li><i class="fas fa-check text-success me-2"></i>Doctor's order/requisition</li>
+                    <li><i class="fas fa-check text-success me-2"></i>Payment method (if applicable)</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="text-center mt-4">
+            <a href="{{ url_for('appointment') }}" class="btn btn-primary btn-lg">
+                <i class="fas fa-calendar-plus me-2"></i>Schedule an Appointment
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

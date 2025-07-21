@@ -1,0 +1,260 @@
+{% extends "base.html" %}
+
+{% block title %}Our Services - {{ lab_info.name }}{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1 class="hero-title">Our Laboratory Services</h1>
+                <p class="hero-subtitle">Comprehensive diagnostic testing with state-of-the-art technology</p>
+                <p class="lead">We offer a complete range of laboratory services to meet all your diagnostic needs, from routine blood work to specialized molecular testing.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Grid -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            {% for service in services %}
+            <div class="col-lg-6 col-xl-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="service-icon mb-3">
+                            <i class="fas {{ service.icon }}"></i>
+                        </div>
+                        <h5 class="card-title">{{ service.name }}</h5>
+                        <p class="card-text">{{ service.description }}</p>
+                        
+                        <div class="mt-auto">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">
+                                    <i class="fas fa-clock me-1"></i>{{ service.turnaround }}
+                                </small>
+                                <a href="{{ url_for('appointment') }}" class="btn btn-sm btn-outline-primary">
+                                    Book Test
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Detailed Service Information -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Detailed Service Information</h2>
+            <p class="section-subtitle">Learn more about our comprehensive testing capabilities</p>
+        </div>
+        
+        <div class="accordion" id="servicesAccordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="bloodChemistry">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBloodChemistry">
+                        <i class="fas fa-tint me-3 text-primary"></i>
+                        Blood Chemistry & Metabolic Panels
+                    </button>
+                </h2>
+                <div id="collapseBloodChemistry" class="accordion-collapse collapse show" data-bs-parent="#servicesAccordion">
+                    <div class="accordion-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h6>Available Tests:</h6>
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-check text-success me-2"></i>Basic Metabolic Panel (BMP)</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Comprehensive Metabolic Panel (CMP)</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Lipid Panel</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Liver Function Tests</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Kidney Function Tests</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Thyroid Function Tests</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Diabetes Monitoring (HbA1c, Glucose)</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="bg-primary text-white p-3 rounded">
+                                    <h6 class="text-white">Quick Facts</h6>
+                                    <p class="mb-1"><strong>Turnaround:</strong> 24 hours</p>
+                                    <p class="mb-1"><strong>Fasting:</strong> May be required</p>
+                                    <p class="mb-0"><strong>Sample:</strong> Blood</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="hematology">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHematology">
+                        <i class="fas fa-heartbeat me-3 text-primary"></i>
+                        Hematology Services
+                    </button>
+                </h2>
+                <div id="collapseHematology" class="accordion-collapse collapse" data-bs-parent="#servicesAccordion">
+                    <div class="accordion-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h6>Available Tests:</h6>
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-check text-success me-2"></i>Complete Blood Count (CBC)</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>CBC with Differential</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Reticulocyte Count</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>ESR (Erythrocyte Sedimentation Rate)</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Coagulation Studies (PT/INR, PTT)</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Blood Smear Examination</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="bg-primary text-white p-3 rounded">
+                                    <h6 class="text-white">Quick Facts</h6>
+                                    <p class="mb-1"><strong>Turnaround:</strong> 2-4 hours</p>
+                                    <p class="mb-1"><strong>Fasting:</strong> Not required</p>
+                                    <p class="mb-0"><strong>Sample:</strong> Blood</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="microbiology">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMicrobiology">
+                        <i class="fas fa-microscope me-3 text-primary"></i>
+                        Microbiology & Infectious Disease
+                    </button>
+                </h2>
+                <div id="collapseMicrobiology" class="accordion-collapse collapse" data-bs-parent="#servicesAccordion">
+                    <div class="accordion-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h6>Available Tests:</h6>
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-check text-success me-2"></i>Blood Cultures</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Urine Cultures</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Throat Cultures</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Wound Cultures</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Antibiotic Sensitivity Testing</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Parasitology</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Mycology (Fungal Testing)</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="bg-primary text-white p-3 rounded">
+                                    <h6 class="text-white">Quick Facts</h6>
+                                    <p class="mb-1"><strong>Turnaround:</strong> 48-72 hours</p>
+                                    <p class="mb-1"><strong>Fasting:</strong> Not required</p>
+                                    <p class="mb-0"><strong>Sample:</strong> Various</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="molecular">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMolecular">
+                        <i class="fas fa-dna me-3 text-primary"></i>
+                        Molecular Diagnostics
+                    </button>
+                </h2>
+                <div id="collapseMolecular" class="accordion-collapse collapse" data-bs-parent="#servicesAccordion">
+                    <div class="accordion-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h6>Available Tests:</h6>
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-check text-success me-2"></i>COVID-19 PCR Testing</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Influenza PCR Panel</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Respiratory Pathogen Panel</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Gastrointestinal Pathogen Panel</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>STD/STI Testing</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Pharmacogenomics</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Genetic Mutation Analysis</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="bg-primary text-white p-3 rounded">
+                                    <h6 class="text-white">Quick Facts</h6>
+                                    <p class="mb-1"><strong>Turnaround:</strong> 24-72 hours</p>
+                                    <p class="mb-1"><strong>Fasting:</strong> Not required</p>
+                                    <p class="mb-0"><strong>Sample:</strong> Various</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Pricing Information -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Transparent Pricing</h2>
+            <p class="section-subtitle">We believe in clear, upfront pricing for all our services</p>
+        </div>
+        
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-body p-4">
+                        <div class="row text-center">
+                            <div class="col-md-4 mb-3">
+                                <h5 class="text-primary">Insurance</h5>
+                                <p>We accept most major insurance plans including Medicare and Medicaid.</p>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <h5 class="text-primary">Self-Pay</h5>
+                                <p>Competitive rates for uninsured patients with payment plans available.</p>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <h5 class="text-primary">Corporate</h5>
+                                <p>Special pricing for corporate wellness programs and bulk testing.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center mt-4">
+                            <a href="{{ url_for('contact') }}" class="btn btn-primary">
+                                <i class="fas fa-phone me-2"></i>Get Pricing Information
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <h3 class="mb-2">Need a Specific Test?</h3>
+                <p class="mb-0 text-muted">Can't find what you're looking for? Contact us for information about specialized testing or custom panels.</p>
+            </div>
+            <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+                <a href="{{ url_for('appointment') }}" class="btn btn-primary btn-lg me-3">
+                    <i class="fas fa-calendar-plus me-2"></i>Schedule Test
+                </a>
+                <a href="{{ url_for('contact') }}" class="btn btn-outline-primary btn-lg">
+                    <i class="fas fa-question-circle me-2"></i>Ask Us
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
