@@ -1,0 +1,273 @@
+{% extends "base.html" %}
+
+{% block title %}Book Appointment - {{ lab_info.name }}{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1 class="hero-title">Book an Appointment</h1>
+                <p class="hero-subtitle">Schedule your laboratory tests online</p>
+                <p class="lead">Quick and convenient appointment scheduling for all your diagnostic needs.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Appointment Form -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="card">
+                    <div class="card-body p-4">
+                        <form method="POST" action="{{ url_for('appointment') }}">
+                            <h4 class="mb-4 text-primary">Patient Information</h4>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="name" class="form-label">Full Name *</label>
+                                    <input type="text" class="form-control" id="name" name="name" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="dob" class="form-label">Date of Birth *</label>
+                                    <input type="date" class="form-control" id="dob" name="dob" required>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="email" class="form-label">Email Address *</label>
+                                    <input type="email" class="form-control" id="email" name="email" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="phone" class="form-label">Phone Number *</label>
+                                    <input type="tel" class="form-control" id="phone" name="phone" required>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="address" class="form-label">Address</label>
+                                <input type="text" class="form-control" id="address" name="address" placeholder="Street Address">
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <label for="city" class="form-label">City</label>
+                                    <input type="text" class="form-control" id="city" name="city">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="state" class="form-label">State</label>
+                                    <input type="text" class="form-control" id="state" name="state">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="zip" class="form-label">ZIP Code</label>
+                                    <input type="text" class="form-control" id="zip" name="zip">
+                                </div>
+                            </div>
+                            
+                            <hr class="my-4">
+                            
+                            <h4 class="mb-4 text-primary">Test Information</h4>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="test_type" class="form-label">Test Type *</label>
+                                    <select class="form-control" id="test_type" name="test_type" required>
+                                        <option value="">Select a test type</option>
+                                        {% for service in services %}
+                                        <option value="{{ service.name }}">{{ service.name }}</option>
+                                        {% endfor %}
+                                        <option value="other">Other (specify in notes)</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="physician" class="form-label">Ordering Physician</label>
+                                    <input type="text" class="form-control" id="physician" name="physician" placeholder="Dr. Name">
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="preferred_date" class="form-label">Preferred Date *</label>
+                                    <input type="date" class="form-control" id="preferred_date" name="preferred_date" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="preferred_time" class="form-label">Preferred Time *</label>
+                                    <select class="form-control" id="preferred_time" name="preferred_time" required>
+                                        <option value="">Select a time</option>
+                                        <option value="8:00 AM">8:00 AM</option>
+                                        <option value="8:30 AM">8:30 AM</option>
+                                        <option value="9:00 AM">9:00 AM</option>
+                                        <option value="9:30 AM">9:30 AM</option>
+                                        <option value="10:00 AM">10:00 AM</option>
+                                        <option value="10:30 AM">10:30 AM</option>
+                                        <option value="11:00 AM">11:00 AM</option>
+                                        <option value="11:30 AM">11:30 AM</option>
+                                        <option value="12:00 PM">12:00 PM</option>
+                                        <option value="12:30 PM">12:30 PM</option>
+                                        <option value="1:00 PM">1:00 PM</option>
+                                        <option value="1:30 PM">1:30 PM</option>
+                                        <option value="2:00 PM">2:00 PM</option>
+                                        <option value="2:30 PM">2:30 PM</option>
+                                        <option value="3:00 PM">3:00 PM</option>
+                                        <option value="3:30 PM">3:30 PM</option>
+                                        <option value="4:00 PM">4:00 PM</option>
+                                        <option value="4:30 PM">4:30 PM</option>
+                                        <option value="5:00 PM">5:00 PM</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="fasting" class="form-label">Fasting Status</label>
+                                <select class="form-control" id="fasting" name="fasting">
+                                    <option value="">Not applicable</option>
+                                    <option value="fasting">I will be fasting</option>
+                                    <option value="non-fasting">I will not be fasting</option>
+                                    <option value="unsure">I'm not sure</option>
+                                </select>
+                                <small class="text-muted">Some tests require fasting. We'll confirm requirements when we contact you.</small>
+                            </div>
+                            
+                            <hr class="my-4">
+                            
+                            <h4 class="mb-4 text-primary">Insurance Information</h4>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="insurance_provider" class="form-label">Insurance Provider</label>
+                                    <input type="text" class="form-control" id="insurance_provider" name="insurance_provider" placeholder="e.g., Blue Cross Blue Shield">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="member_id" class="form-label">Member ID</label>
+                                    <input type="text" class="form-control" id="member_id" name="member_id">
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="group_number" class="form-label">Group Number</label>
+                                    <input type="text" class="form-control" id="group_number" name="group_number">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="payment_method" class="form-label">Payment Method</label>
+                                    <select class="form-control" id="payment_method" name="payment_method">
+                                        <option value="">Select payment method</option>
+                                        <option value="insurance">Insurance</option>
+                                        <option value="self-pay">Self Pay</option>
+                                        <option value="both">Insurance + Self Pay</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <hr class="my-4">
+                            
+                            <h4 class="mb-4 text-primary">Additional Information</h4>
+                            
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Special Instructions or Notes</label>
+                                <textarea class="form-control" id="message" name="message" rows="4" placeholder="Any special requirements, mobility assistance needed, or other important information..."></textarea>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="results_notification" name="results_notification" checked>
+                                    <label class="form-check-label" for="results_notification">
+                                        I would like to receive results notification via email
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="privacy_consent" name="privacy_consent" required>
+                                    <label class="form-check-label" for="privacy_consent">
+                                        I agree to the privacy policy and consent to the processing of my personal health information *
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="terms_consent" name="terms_consent" required>
+                                    <label class="form-check-label" for="terms_consent">
+                                        I understand that this is a request for an appointment and confirmation will be provided within 24 hours *
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary btn-lg">
+                                    <i class="fas fa-calendar-check me-2"></i>Submit Appointment Request
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Appointment Information -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">What to Expect</h2>
+            <p class="section-subtitle">Important information about your appointment</p>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-4 mb-4">
+                <div class="card text-center h-100">
+                    <div class="card-body p-4">
+                        <i class="fas fa-clock text-primary fa-3x mb-3"></i>
+                        <h5>Confirmation</h5>
+                        <p>We'll contact you within 24 hours to confirm your appointment time and provide any special instructions.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 mb-4">
+                <div class="card text-center h-100">
+                    <div class="card-body p-4">
+                        <i class="fas fa-id-card text-primary fa-3x mb-3"></i>
+                        <h5>What to Bring</h5>
+                        <p>Please bring a valid photo ID, insurance card, and any doctor's orders or requisitions.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 mb-4">
+                <div class="card text-center h-100">
+                    <div class="card-body p-4">
+                        <i class="fas fa-user-clock text-primary fa-3x mb-3"></i>
+                        <h5>Arrival Time</h5>
+                        <p>Please arrive 15 minutes early to complete any additional paperwork and check-in procedures.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Emergency Contact -->
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <div class="bg-primary text-white p-4 rounded">
+                    <h4 class="text-white mb-3">Need Urgent Testing?</h4>
+                    <p class="mb-3">For urgent or STAT testing needs, please call us directly at {{ lab_info.phone }}</p>
+                    <a href="tel:{{ lab_info.phone }}" class="btn btn-light btn-lg">
+                        <i class="fas fa-phone me-2"></i>Call Now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,208 @@
+{% extends "base.html" %}
+
+{% block title %}{{ lab_info.name }} - {{ lab_info.tagline }}{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="hero-title">{{ lab_info.name }}</h1>
+                <p class="hero-subtitle">{{ lab_info.tagline }}</p>
+                <p class="lead mb-4">Providing accurate, reliable, and timely medical laboratory services since {{ lab_info.established }}. Our state-of-the-art facility and experienced team ensure the highest quality diagnostic testing.</p>
+                
+                <div class="d-flex flex-wrap gap-3">
+                    <a href="{{ url_for('appointment') }}" class="btn btn-light btn-lg">
+                        <i class="fas fa-calendar-plus me-2"></i>Book Appointment
+                    </a>
+                    <a href="{{ url_for('services_page') }}" class="btn btn-outline-light btn-lg">
+                        <i class="fas fa-microscope me-2"></i>Our Services
+                    </a>
+                </div>
+            </div>
+            
+            <div class="col-lg-6 text-center">
+                <div class="hero-image mt-5 mt-lg-0">
+                    <i class="fas fa-microscope" style="font-size: 12rem; opacity: 0.1;"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Quick Stats -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-3 col-6 mb-4">
+                <div class="h2 text-primary fw-bold">{{ 2024 - lab_info.established }}+</div>
+                <p class="mb-0">Years of Experience</p>
+            </div>
+            <div class="col-md-3 col-6 mb-4">
+                <div class="h2 text-primary fw-bold">50,000+</div>
+                <p class="mb-0">Tests Performed</p>
+            </div>
+            <div class="col-md-3 col-6 mb-4">
+                <div class="h2 text-primary fw-bold">24/7</div>
+                <p class="mb-0">Emergency Services</p>
+            </div>
+            <div class="col-md-3 col-6 mb-4">
+                <div class="h2 text-primary fw-bold">99.9%</div>
+                <p class="mb-0">Accuracy Rate</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Services -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Our Featured Services</h2>
+            <p class="section-subtitle">Comprehensive diagnostic testing with fast, accurate results</p>
+        </div>
+        
+        <div class="row">
+            {% for service in services %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 text-center p-4">
+                    <div class="service-icon">
+                        <i class="fas {{ service.icon }}"></i>
+                    </div>
+                    <h5 class="card-title">{{ service.name }}</h5>
+                    <p class="card-text">{{ service.description }}</p>
+                    <div class="mt-auto">
+                        <small class="text-muted">
+                            <i class="fas fa-clock me-1"></i>Results in {{ service.turnaround }}
+                        </small>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="text-center mt-4">
+            <a href="{{ url_for('services_page') }}" class="btn btn-outline-primary btn-lg">
+                View All Services <i class="fas fa-arrow-right ms-2"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose Us -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Why Choose {{ lab_info.name }}?</h2>
+            <p class="section-subtitle">Excellence in every aspect of laboratory medicine</p>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="d-flex">
+                    <div class="flex-shrink-0">
+                        <div class="bg-primary rounded-circle p-3" style="width: 60px; height: 60px;">
+                            <i class="fas fa-award text-white"></i>
+                        </div>
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                        <h5>Accredited Laboratory</h5>
+                        <p class="mb-0">CAP and CLIA certified facility with the highest quality standards and regulatory compliance.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="d-flex">
+                    <div class="flex-shrink-0">
+                        <div class="bg-primary rounded-circle p-3" style="width: 60px; height: 60px;">
+                            <i class="fas fa-clock text-white"></i>
+                        </div>
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                        <h5>Fast Turnaround</h5>
+                        <p class="mb-0">Quick processing times with most routine tests completed within 24 hours.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="d-flex">
+                    <div class="flex-shrink-0">
+                        <div class="bg-primary rounded-circle p-3" style="width: 60px; height: 60px;">
+                            <i class="fas fa-user-md text-white"></i>
+                        </div>
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                        <h5>Expert Team</h5>
+                        <p class="mb-0">Board-certified pathologists and experienced medical technologists.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="d-flex">
+                    <div class="flex-shrink-0">
+                        <div class="bg-primary rounded-circle p-3" style="width: 60px; height: 60px;">
+                            <i class="fas fa-laptop text-white"></i>
+                        </div>
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                        <h5>Online Results</h5>
+                        <p class="mb-0">Secure online portal for convenient access to your test results 24/7.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="d-flex">
+                    <div class="flex-shrink-0">
+                        <div class="bg-primary rounded-circle p-3" style="width: 60px; height: 60px;">
+                            <i class="fas fa-shield-alt text-white"></i>
+                        </div>
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                        <h5>HIPAA Compliant</h5>
+                        <p class="mb-0">Complete privacy and security of all patient information and test results.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="d-flex">
+                    <div class="flex-shrink-0">
+                        <div class="bg-primary rounded-circle p-3" style="width: 60px; height: 60px;">
+                            <i class="fas fa-handshake text-white"></i>
+                        </div>
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                        <h5>Insurance Accepted</h5>
+                        <p class="mb-0">We accept most major insurance plans and offer competitive self-pay rates.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact CTA -->
+<section class="py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <h3 class="mb-2">Ready to Schedule Your Test?</h3>
+                <p class="mb-0 text-muted">Book an appointment today or contact us for more information about our services.</p>
+            </div>
+            <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+                <a href="{{ url_for('appointment') }}" class="btn btn-primary btn-lg me-3">
+                    <i class="fas fa-calendar-plus me-2"></i>Book Now
+                </a>
+                <a href="{{ url_for('contact') }}" class="btn btn-outline-primary btn-lg">
+                    <i class="fas fa-phone me-2"></i>Contact Us
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

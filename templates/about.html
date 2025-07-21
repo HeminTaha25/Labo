@@ -1,0 +1,226 @@
+{% extends "base.html" %}
+
+{% block title %}About Us - {{ lab_info.name }}{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1 class="hero-title">About {{ lab_info.name }}</h1>
+                <p class="hero-subtitle">{{ lab_info.tagline }}</p>
+                <p class="lead">Dedicated to providing excellence in medical laboratory services since {{ lab_info.established }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Our Story -->
+<section class="py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h2 class="section-title text-start">Our Story</h2>
+                <p>Founded in {{ lab_info.established }}, {{ lab_info.name }} has been at the forefront of medical laboratory diagnostics for over {{ 2024 - lab_info.established }} years. What began as a small community laboratory has grown into a comprehensive diagnostic center serving patients, physicians, and healthcare facilities throughout the region.</p>
+                
+                <p>Our commitment to excellence is reflected in our state-of-the-art facility, cutting-edge technology, and most importantly, our dedicated team of laboratory professionals who work tirelessly to provide accurate, reliable results that healthcare providers depend on for patient care.</p>
+                
+                <p>We believe that quality laboratory services are fundamental to good healthcare, and we take pride in being a trusted partner in the diagnostic process.</p>
+            </div>
+            <div class="col-lg-6">
+                <div class="bg-light p-4 rounded">
+                    <h4 class="text-primary mb-3">Our Mission</h4>
+                    <p class="mb-4">To provide accurate, timely, and reliable laboratory services that support healthcare providers in delivering the best possible patient care, while maintaining the highest standards of quality and professionalism.</p>
+                    
+                    <h4 class="text-primary mb-3">Our Vision</h4>
+                    <p class="mb-0">To be the leading medical laboratory in our region, recognized for our commitment to excellence, innovation, and exceptional patient service.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Our Values -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Our Core Values</h2>
+            <p class="section-subtitle">The principles that guide everything we do</p>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="text-center">
+                    <div class="bg-primary rounded-circle p-4 d-inline-flex mb-3">
+                        <i class="fas fa-bullseye text-white fa-2x"></i>
+                    </div>
+                    <h5>Accuracy</h5>
+                    <p>We maintain the highest standards of precision in all our testing procedures and results.</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="text-center">
+                    <div class="bg-primary rounded-circle p-4 d-inline-flex mb-3">
+                        <i class="fas fa-heart text-white fa-2x"></i>
+                    </div>
+                    <h5>Compassion</h5>
+                    <p>We understand that behind every test is a person, and we treat each case with care and empathy.</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="text-center">
+                    <div class="bg-primary rounded-circle p-4 d-inline-flex mb-3">
+                        <i class="fas fa-lightbulb text-white fa-2x"></i>
+                    </div>
+                    <h5>Innovation</h5>
+                    <p>We continuously invest in the latest technology and methods to improve our services.</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="text-center">
+                    <div class="bg-primary rounded-circle p-4 d-inline-flex mb-3">
+                        <i class="fas fa-handshake text-white fa-2x"></i>
+                    </div>
+                    <h5>Integrity</h5>
+                    <p>We conduct our business with honesty, transparency, and ethical practices in all interactions.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Our Team -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Meet Our Team</h2>
+            <p class="section-subtitle">Experienced professionals dedicated to excellence in laboratory medicine</p>
+        </div>
+        
+        <div class="row">
+            {% for member in team_members %}
+            <div class="col-lg-6 col-xl-3 mb-4">
+                <div class="card text-center">
+                    <div class="card-body p-4">
+                        <div class="bg-primary rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 100px; height: 100px;">
+                            <i class="fas fa-user-md text-white fa-3x"></i>
+                        </div>
+                        <h5 class="card-title">{{ member.name }}</h5>
+                        <p class="text-primary fw-bold">{{ member.position }}</p>
+                        <p class="text-muted small mb-2">{{ member.credentials }}</p>
+                        <p class="card-text small">{{ member.specialization }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Certifications & Accreditations -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Certifications & Accreditations</h2>
+            <p class="section-subtitle">Our commitment to quality is recognized by leading healthcare organizations</p>
+        </div>
+        
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="card text-center h-100">
+                            <div class="card-body">
+                                <i class="fas fa-certificate text-primary fa-3x mb-3"></i>
+                                <h5>CAP Accredited</h5>
+                                <p class="small">College of American Pathologists accreditation ensures the highest quality standards.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-4">
+                        <div class="card text-center h-100">
+                            <div class="card-body">
+                                <i class="fas fa-shield-alt text-primary fa-3x mb-3"></i>
+                                <h5>CLIA Certified</h5>
+                                <p class="small">Clinical Laboratory Improvement Amendments certification for regulatory compliance.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-4">
+                        <div class="card text-center h-100">
+                            <div class="card-body">
+                                <i class="fas fa-check-circle text-primary fa-3x mb-3"></i>
+                                <h5>ISO 15189</h5>
+                                <p class="small">International standard for quality and competence in medical laboratories.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Quality Assurance -->
+<section class="py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="bg-light p-4 rounded">
+                    <h3 class="text-primary mb-3">Quality Assurance Program</h3>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Daily quality control testing</li>
+                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Proficiency testing participation</li>
+                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Equipment calibration and maintenance</li>
+                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Staff competency assessment</li>
+                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Continuous improvement processes</li>
+                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Regular external audits</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <h3>Commitment to Quality</h3>
+                <p>Our comprehensive quality assurance program ensures that every test result meets the highest standards of accuracy and reliability. We participate in external proficiency testing programs and undergo regular inspections to maintain our accreditations.</p>
+                
+                <p>Our laboratory information system provides complete traceability of all specimens and results, ensuring data integrity and supporting our quality objectives.</p>
+                
+                <div class="mt-4">
+                    <div class="row text-center">
+                        <div class="col-6">
+                            <div class="h3 text-primary">99.9%</div>
+                            <small>Accuracy Rate</small>
+                        </div>
+                        <div class="col-6">
+                            <div class="h3 text-primary">24/7</div>
+                            <small>Quality Monitoring</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <h3 class="mb-2">Partner With Us</h3>
+                <p class="mb-0 text-muted">Join the healthcare providers who trust {{ lab_info.name }} for their diagnostic needs.</p>
+            </div>
+            <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+                <a href="{{ url_for('contact') }}" class="btn btn-primary btn-lg">
+                    <i class="fas fa-handshake me-2"></i>Contact Us
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
